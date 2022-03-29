@@ -9,14 +9,16 @@ def main():
         pastebin_strings = get_pastebin_string(poke_info)
         pass
 def get_pastebin_string(poke_info):
-
+    weight = poke_info['weight']
     title = poke_info['name'] + "'s " "stats"
     print(title)
     for i in poke_info['abilities']:
-        print(i['ability']['name'])
-    weight = poke_info['weight']
-
+       print(i['ability']['name'])
     print(weight)
+
+
+
+
 
 
 

@@ -7,7 +7,6 @@ def main():
         pastebin_strings = get_pastebin_string(poke_info)
         pastebin(pastebin_strings)
 
-    pass
 def pastebin(pokemon_data):
 
 

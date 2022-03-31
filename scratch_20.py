@@ -2,38 +2,20 @@ import requests
 
 
 def main():
-
-
     poke_info = get_poke_info()
     if poke_info:
         pastebin_strings = get_pastebin_string(poke_info)
         pass
+
 def get_pastebin_string(poke_info):
     weight = poke_info['weight']
     title = poke_info['name'] + "'s " "stats"
     print(title)
     for i in poke_info['abilities']:
-       print(i['ability']['name'])
+        print(i['ability']['name'])
     print(weight)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+   # pokemon_data = "Abilities: " + "\nWeight" + (weight)
 
 
 def get_poke_info():
@@ -47,6 +29,6 @@ def get_poke_info():
 
     else:
         print('Connection failed...', response.status_code)
-        return
-
+        print("Did you enter a valid pokemon name?")
+        return get_poke_info()
 main()

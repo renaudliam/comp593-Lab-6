@@ -5,17 +5,46 @@ def main():
     poke_info = get_poke_info()
     if poke_info:
         pastebin_strings = get_pastebin_string(poke_info)
-        pass
+        pastebin(pastebin_strings)
 
+    pass
+def pastebin(pokemon_data):
+
+
+    requestParams = {
+        'api_dev_key': "DwQS1JEYBGxcXYYSx7feoTnngeyKFHeD",
+        'api_option': "paste",
+        'api_paste_code': pokemon_data,
+        'api_paste_name': "Liam's Pokemon Data"
+    }
+
+
+    req = requests.post("https://pastebin.com/api/api_post.php", data=requestParams)
+    if req.status_code == 200:
+            print("Successful connection to PasteBin")
+            print("Here's the link to the paste!!")
+    else:
+        print(req.status_code, "Failed to establish connection")
+    print(req.text)
 def get_pastebin_string(poke_info):
     weight = poke_info['weight']
     title = poke_info['name'] + "'s " "stats"
-    print(title)
+    print(title.title())
+    poke = ''
+    j = 0
     for i in poke_info['abilities']:
-        print(i['ability']['name'])
-    print(weight)
 
-   # pokemon_data = "Abilities: " + "\nWeight" + (weight)
+        if j != len(poke_info['abilities'])-1:
+            poke += (i['ability']['name']) + "," " "
+            j += 1
+        else:
+            poke += (i['ability']['name'])
+
+    pokemon_data = "Abilities: " + poke + "\nWeight: " + str(weight)
+    print(pokemon_data)
+    return pokemon_data
+
+
 
 
 def get_poke_info():
